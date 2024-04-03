@@ -5,9 +5,16 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "client": "cd front-end && npm start",
+    "server": "cd back-end && npm start",
+    "install": "cd back-end && npm install && cd ../front-end && npm install",
+    "develop": "concurrently \"cd back-end && npm start\" \"cd front-end && npm start"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
