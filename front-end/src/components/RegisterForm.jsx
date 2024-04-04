@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function RegisterForm(props) {
+  const navigate = useNavigate();
   const [register, setRegister] = useState({
     username: "",
     fullname: "",
@@ -35,6 +37,7 @@ export default function RegisterForm(props) {
 
       if (response) {
         console.log("Registration successful!");
+        return navigate("/login");
       } else {
         console.log("Registration failed!");
       }

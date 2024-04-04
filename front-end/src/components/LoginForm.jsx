@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function LoginForm(props) {
+  const navigate = useNavigate();
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -31,7 +33,7 @@ export default function LoginForm(props) {
         }
       );
       if (response) {
-        console.log("User is logged in!");
+        return navigate("/home");
       } else {
         console.log("Login failed!");
       }
