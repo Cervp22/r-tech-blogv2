@@ -9,12 +9,22 @@ const validateToken = require("./routes/validateToken");
 
 const port = 3001;
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "Access-Control-Allow-Credentials",
+  ],
+};
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); //lets us work with cookies in our server
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use("/api/register", register);
 app.use("/api/login", login);

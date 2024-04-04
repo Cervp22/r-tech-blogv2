@@ -3,8 +3,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Nopage from "./pages/Error404";
-import ProtectedRoutes from "./utils/ProtectedRoutes";
 import "./App.css";
+import ProtectedRoute from "./utils/ProtectedRoutes";
 
 function App() {
   return (
@@ -12,23 +12,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoutes accessBy="authenticated">
-                <Home />
-              </ProtectedRoutes>
-            }
-          />
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/Register"
-            element={
-              <ProtectedRoutes accessBy="non-authenticated">
-                <Register />
-              </ProtectedRoutes>
-            }
-          />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<Nopage />} />
         </Routes>
       </BrowserRouter>
