@@ -1,20 +1,12 @@
 import { Navigate } from "react-router-dom";
-import axios from "axios";
 
 //setting withcredentials to true for all request
-const ProtectedRoute = ({ children, accessBy }) => {
-  const authCall = axios
-    .post("http://localhost:3001/api/validateToken", {
-      withCredentials: true,
-    })
-
-  if (authCall) {
-    console.log("frontend has communication with endpoint!");
-  } else {
-    console.log("move to the login page!");
-  }
-
-  return <></>;
+const ProtectedRoute = ({ children }) => {
+  const response = fetch("http://localhost:3001/api/validateToken", {
+    method: "POST",
+    withCredentials: true,
+    headers: { "Content-Type": "application/json" },
+  });
 };
 
 export default ProtectedRoute;

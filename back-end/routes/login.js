@@ -18,11 +18,12 @@ router.post("/", async (req, res) => {
     );
 
     if (!isPasswordCorrect) {
-      res.status(400).json({ message: "Wrong password" });
+      res.status(400).json({ message: "Wrong username or password try again" });
     }
 
     const payload = {
       _id: user._id,
+      username: user.username,
     };
     const token = jwt.sign(payload, process.env.JWT_SECRET_LOSPATOJOSV2, {
       expiresIn: "1d",
@@ -32,7 +33,7 @@ router.post("/", async (req, res) => {
         httpOnly: true,
       })
       .status(200)
-      .json({ username: user.username, token: token });
+      .json({ username: user.username, token: token, isLoggedIn: true });
   } catch (err) {
     res.status(500).json({ message: "Check server login endpoint" }, err);
   }

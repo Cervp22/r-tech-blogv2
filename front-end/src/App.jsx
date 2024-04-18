@@ -4,14 +4,14 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Nopage from "./pages/Error404";
 import "./App.css";
-import ProtectedRoute from "./utils/ProtectedRoutes";
+
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home />} />
+          <Route index element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

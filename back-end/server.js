@@ -9,6 +9,11 @@ const validateToken = require("./routes/validateToken");
 
 const port = 3001;
 
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser()); //lets us work with cookies in our server
+app.use(express.json());
 const corsOptions = {
   origin: "http://localhost:3000",
   credentials: true,
@@ -19,11 +24,6 @@ const corsOptions = {
     "Access-Control-Allow-Credentials",
   ],
 };
-const app = express();
-
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser()); //lets us work with cookies in our server
-app.use(express.json());
 app.use(cors(corsOptions));
 
 app.use("/api/register", register);

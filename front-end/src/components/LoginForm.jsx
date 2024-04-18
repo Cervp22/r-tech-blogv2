@@ -32,10 +32,10 @@ export default function LoginForm(props) {
           withCredentials: true,
         }
       );
-      if (response) {
-        return navigate("/home");
+      if (!response) {
+        console.log("login failed!");
       } else {
-        console.log("Login failed!");
+        return navigate("/home");
       }
     } catch (err) {
       console.log(err);
