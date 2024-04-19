@@ -1,5 +1,6 @@
 import ForgotPasswordForm from "../components/forms/forgotpasswordform";
 
+
 export default function ForgotPasswordPage() {
 
 
@@ -7,7 +8,7 @@ export default function ForgotPasswordPage() {
       <>
         <div style={{ height: "80vh" }}>
 
-        {<ForgotPasswordForm/>}
+        <ForgotPasswordForm/>
           <h1>This is the forgot page for email validation & email sending</h1>
         </div>
       </>

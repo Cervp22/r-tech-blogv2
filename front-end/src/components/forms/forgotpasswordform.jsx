@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ForgotPasswordNot from "../notifications/forgotpasswordNot";
 
 export default function ForgotPasswordForm(props) {
   const [forgotPassword, setforgotPassword] = useState({
     email: "",
   });
+
+  const [checkEmail, setCheckEmail] = useState('')
 
   useEffect(() => {
     document.title = "Forgot Password";
@@ -33,6 +36,10 @@ export default function ForgotPasswordForm(props) {
 
       if(response){
         console.log('response is good')
+        setCheckEmail('Check Your Email for password reset from losPatojos')
+      }else{
+        console.log('bad email or user doesnt e')
+        setCheckEmail('Email does Not Exist!')
       }
     } catch (err) {
       console.log(err);
@@ -55,7 +62,8 @@ export default function ForgotPasswordForm(props) {
           />
           <button type="submit">Submit</button>
         </form>
-      
+        <br />
+        {checkEmail}
       </div>
     </>
   );

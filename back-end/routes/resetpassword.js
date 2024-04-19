@@ -9,10 +9,10 @@ router.post("/", async (req, res) => {
     const {email}= req.body;
     const userData = await User.findOne({email:email})
 
-    const content = `Hello there ${email}`
+    const content = `Hello there ${email} <br> <h2>Click the URL to take you to enter your new password</> <h1>`
 
     if (!userData){
-        return res.status(404).json({status:false, message:'User not found'})
+      return res.status(404).json({status:false, message:'User not found'})
     }
 
     var transporter = nodemailer.createTransport({
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
           console.log(error);
         } else {
           console.log('Email sent: ' + info.response);
-         return res.status(200)
+         return res.status(200).json({status:true, message:'message sent'})
         }
       });
   
