@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Nopage from "./pages/Error404";
+import ForgotPassword from "./pages/ForgotPasswordPage";
 import "./App.css";
 
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="*" element={<Nopage />} />
         </Routes>
       </BrowserRouter>

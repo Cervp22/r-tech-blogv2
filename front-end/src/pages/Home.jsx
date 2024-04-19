@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Logoutbtn from '../components/buttons/Logoutbtn'
 import axios from "axios";
+
+
 
 export default function Home() {
   const navigate = useNavigate();
@@ -12,13 +15,13 @@ export default function Home() {
       } else {
         navigate("/");
       }
-      console.log(res);
     });
   }, []);
 
   return (
     <>
       <div style={{ height: "80vh" }}>
+        <Logoutbtn/>
         <h1>This is your home Page!</h1>
       </div>
     </>

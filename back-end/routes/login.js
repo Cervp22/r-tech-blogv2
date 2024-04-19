@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
         httpOnly: true,
       })
       .status(200)
-      .json({ username: user.username, token: token, isLoggedIn: true });
+      .json({ username: user.username, token: token,});
   } catch (err) {
     res.status(500).json({ message: "Check server login endpoint" }, err);
   }
