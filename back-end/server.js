@@ -6,7 +6,8 @@ const register = require("./routes/register");
 const login = require("./routes/login");
 const logout = require("./routes/logout");
 const validateToken = require("./routes/validateToken");
-const resetPassword = require('./routes/resetpassword')
+const forgotPassword = require("./routes/forgotpassword");
+const resetPassword = require("./routes/reset-Password");
 
 const port = 3001;
 
@@ -31,7 +32,8 @@ app.use("/api/register", register);
 app.use("/api/login", login);
 app.use("/api/logout", logout);
 app.use("/api/validateToken", validateToken);
-app.use('/api/resetPassword', resetPassword)
+app.use("/api/forgotPassword", forgotPassword);
+app.use("/api/resetPassword/:id/:token", resetPassword);
 app.get("/", (req, res) => {
   res.send("Welcome to the r-tech-blogv2 api...");
 });

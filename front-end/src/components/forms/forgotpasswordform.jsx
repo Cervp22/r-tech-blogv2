@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ForgotPasswordNot from "../notifications/forgotpasswordNot";
+//import ForgotPasswordNot from "../notifications/forgotpasswordNot";
 
 export default function ForgotPasswordForm(props) {
   const [forgotPassword, setforgotPassword] = useState({
     email: "",
   });
 
-  const [checkEmail, setCheckEmail] = useState('')
+  const [checkEmail, setCheckEmail] = useState("");
 
   useEffect(() => {
     document.title = "Forgot Password";
@@ -24,9 +24,8 @@ export default function ForgotPasswordForm(props) {
     event.preventDefault();
 
     try {
-  
       const response = await axios.post(
-        "http://localhost:3001/api/resetPassword",
+        "http://localhost:3001/api/forgotPassword",
         JSON.stringify(forgotPassword),
         {
           headers: { "Content-Type": "application/json" },
@@ -34,12 +33,12 @@ export default function ForgotPasswordForm(props) {
         }
       );
 
-      if(response){
-        console.log('response is good')
-        setCheckEmail('Check Your Email for password reset from losPatojos')
-      }else{
-        console.log('bad email or user doesnt e')
-        setCheckEmail('Email does Not Exist!')
+      if (response) {
+        console.log("response is good");
+        setCheckEmail("Check Your Email for password reset from losPatojos");
+      } else {
+        console.log("bad email or user doesnt e");
+        setCheckEmail("Email does Not Exist!");
       }
     } catch (err) {
       console.log(err);
@@ -48,7 +47,7 @@ export default function ForgotPasswordForm(props) {
 
   return (
     <>
-     <div style={{ height: "80vh" }}>
+      <div style={{ height: "80vh" }}>
         <h1>Please enter your email</h1>
         <br />
         <form onSubmit={handleFormSubmit}>
