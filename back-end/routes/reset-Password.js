@@ -20,10 +20,8 @@ router.post("/", async (req, res) => {
     }
 
     // Hash the password securely (using a higher cost factor if necessary)
-    const saltRounds = 12; // Adjust based on security needs
+    const saltRounds = 12;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-    console.log(hashedPassword);
-    /*
 
     // Update user password atomically
     const updatedUser = await User.findByIdAndUpdate(
@@ -35,8 +33,8 @@ router.post("/", async (req, res) => {
     if (!updatedUser) {
       return res.status(404).json({ status: "User not found" });
     }
+    console.log("User password changed");
     res.status(200).json({ status: "Success" });
-    */
   } catch (err) {
     res.status(500).json({ message: "Check reset password endpoint!" }, err);
   }

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-//import ForgotPasswordNot from "../notifications/forgotpasswordNot";
 
 export default function ForgotPasswordForm(props) {
   const [forgotPassword, setforgotPassword] = useState({

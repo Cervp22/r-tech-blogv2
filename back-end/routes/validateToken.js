@@ -2,17 +2,15 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-const verifyUser = async (req, res, next) => {
+const validateUser = async (req, res, next) => {
   try {
     const token = req.cookies.LP_access_token;
-    console.log(token);
     if (!token) {
       return res.json({ status: false, message: "NO TOKEN" });
     }
-    const verified = await jwt.verify(
-      token,
-      process.env.JWT_SECRET_LOSPATOJOSV2
-    );
+    const user = await jwt.verify(token, process.env.JWT_SECRET_LOSPATOJOSV2);
+    req.user = user;
+
     next();
   } catch (err) {
     res
@@ -20,7 +18,9 @@ const verifyUser = async (req, res, next) => {
       .json({ message: "Check token verification endpoint!" }, err);
   }
 };
-router.get("/", verifyUser, (req, res) => {
+
+router.get("/", validateUser, (req, res) => {
+  console.log("User token validated");
   return res.json({ status: true, message: "authorized" });
 });
 

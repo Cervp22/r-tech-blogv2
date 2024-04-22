@@ -6,6 +6,7 @@ import Nopage from "./pages/Error404";
 import ForgotPassword from "./pages/ForgotPasswordPage";
 import "./App.css";
 import ResetPassword from "./pages/ResetpasswordPage";
+import AdminPage from "./pages/Adminpage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
           <Route path="/resetpassword/:id/:token" element={<ResetPassword />} />
           <Route path="*" element={<Nopage />} />

@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 export default function ResetPasswordForm(props) {
   const navigate = useNavigate();
 
-  const [resetPassword, setResetPassword] = useState({
-    password: "",
-  });
+  const [password, setPassword] = useState("");
+
 
   const { id, token } = useParams();
 
@@ -16,10 +16,7 @@ export default function ResetPasswordForm(props) {
   });
 
   const handleInput = (e) => {
-    setResetPassword({
-      ...resetPassword,
-      [e.target.name]: e.target.value,
-    });
+    setPassword(e.target.value);
   };
   axios.defaults.withCredentials = true;
 
@@ -27,11 +24,21 @@ export default function ResetPasswordForm(props) {
     event.preventDefault();
 
     try {
-      fetch(`http://localhost:3001/api/resetPassword/` + id + "/" + token, {
-        method: "POST",
-        body: JSON.stringify({ resetPassword, id, token }),
-        headers: { "Content-Type": "application/json" },
+      const response = axios({
+        method: "post",
+        url: `http://localhost:3001/api/resetPassword/${id}/${token}`,
+        data: {
+          password,
+          id,
+          token,
+        },
       });
+
+      if (response) {
+        console.log("Response is good");
+        navigate("/");
+      } else {
+      }
     } catch (err) {
       console.log(err);
     }

@@ -7,6 +7,7 @@ router.post("/", async (req, res) => {
 
     if (userData) {
       res.status(200).json(userData);
+      console.log("New user registered");
     } else {
       res.status(404).json({ message: "User was not created.." });
     }
