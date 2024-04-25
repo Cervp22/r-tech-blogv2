@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
     const saltRounds = 12;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    // Update user password atomically
+    // Update user password automatically
     const updatedUser = await User.findByIdAndUpdate(
       { _id: id },
       { password: hashedPassword },

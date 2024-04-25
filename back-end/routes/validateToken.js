@@ -10,7 +10,6 @@ const validateUser = async (req, res, next) => {
     }
     const user = await jwt.verify(token, process.env.JWT_SECRET_LOSPATOJOSV2);
     req.user = user;
-
     next();
   } catch (err) {
     res
@@ -20,8 +19,10 @@ const validateUser = async (req, res, next) => {
 };
 
 router.get("/", validateUser, (req, res) => {
+  const { isAdmin } = req.user;
   console.log("User token validated");
-  return res.json({ status: true, message: "authorized" });
+
+  return res.json({ status: true, message: "authorized", isAdmin: isAdmin });
 });
 
 module.exports = router;

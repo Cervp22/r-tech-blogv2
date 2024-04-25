@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
     const payload = {
       _id: user._id,
       username: user.username,
-      admin: user.isAdmin,
+      isAdmin: user.isAdmin,
     };
     const token = jwt.sign(payload, process.env.JWT_SECRET_LOSPATOJOSV2, {
       expiresIn: "1d",
