@@ -1,20 +1,19 @@
-import axios from 'axios'
+import "../styles/loginbtnstyle.css";
+import axios from "axios";
 
+export default function LogOutBtn(props) {
+  function logOut() {
+    axios.post("http://localhost:3001/api/logout").then((res) => {
+      console.log(res);
+    });
+    window.location.reload();
+  }
 
-
-export default function LogOutBtn(props){
-
-
-function logOut(){
-axios.post('http://localhost:3001/api/logout').then((res)=>{
-    console.log(res)
-})
-window.location.reload()
-}
-
-    return(
+  return (
     <div>
-        <button onClick={logOut}>logout</button>
+      <button className="logoutbtn" id="logoutbtn" onClick={logOut}>
+        logout
+      </button>
     </div>
-)
+  );
 }

@@ -5,6 +5,7 @@ import ForgotPasswordBtn from "../components/buttons/ForgotPassword";
 
 import RegisterBtn from "../components/buttons/Registerbtn";
 import LoginForm from "../components/forms/LoginForm";
+import Maintitle from "../components/headers/Maintitle";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export default function Login() {
 
   return (
     <>
+      <Maintitle />
       <LoginForm />
       <RegisterBtn />
       <ForgotPasswordBtn />

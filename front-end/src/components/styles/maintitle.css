@@ -1,0 +1,11 @@
+.maintitle {
+  color: black;
+}
+.maintitle a {
+  color: black;
+  font-size: 40px;
+  text-decoration: none;
+}
+.maintitlediv {
+  margin-left: 40px;
+}
