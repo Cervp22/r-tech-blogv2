@@ -24,27 +24,18 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  friends:[
+  post: [
     {
       type: Schema.Types.ObjectId,
-      ref:"user"
-    }
-  ],
-  post:[
-    {
-      type:Schema.Types.ObjectId,
-      ref:'post',
-    }
+      ref: "Post",
+    },
   ],
   createdAt: {
     type: Date,
     default: Date.now,
     get: (timestamp) => new Date(timestamp).toDateString(),
   },
-},
-);
-
-
+});
 
 userSchema.pre("save", async function (next) {
   try {
@@ -57,6 +48,6 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-const User = model("user", userSchema);
+const User = model("User", userSchema);
 
 module.exports = User;

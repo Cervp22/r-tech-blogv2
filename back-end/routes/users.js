@@ -1,27 +1,25 @@
 const router = require("express").Router();
-const {User, Post} = require('../models')
+const { User, Post } = require("../models");
 
+router.get("/", async (req, res) => {
+  try {
+    const users = await User.find();
 
-router.get('/', async (req,res)=>{
-try{
-    const users = await User.find().populate('post');
-
-    res.status(200).json(users)
-
-    }catch(err){
-        res.status(500).json({status: 'Request failed', message:'Check Post endpoint!'})
-    }   
-
+    res.status(200).json(users);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ status: "Request failed", message: "Check Post endpoint!" });
+  }
 });
 
-router.get('/:id', async (req,res)=>{
-    const users = await User.findById({_id:req.params.id}).populate('post');
+router.get("/:id", async (req, res) => {
+  const users = await User.findById({ _id: req.params.id }).populate("post");
+  console.log(users);
 
-    if(users){
-        res.status(200).json(users)
-    }else(
-        res.status(404).json({Status: 'User does not exist'})
-    )
-})
+  if (users) {
+    res.status(200).json(users);
+  } else res.status(404).json({ Status: "User does not exist" });
+});
 
 module.exports = router;
