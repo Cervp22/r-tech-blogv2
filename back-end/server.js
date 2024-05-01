@@ -8,7 +8,7 @@ const logout = require("./routes/logout");
 const validateToken = require("./routes/validateToken");
 const forgotPassword = require("./routes/forgotpassword");
 const resetPassword = require("./routes/reset-Password");
-const post = require('./routes/Post')
+const post = require('./routes/post')
 const users = require('./routes/users')
 
 const port = 3001;

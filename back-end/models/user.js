@@ -41,7 +41,14 @@ const userSchema = new Schema({
     default: Date.now,
     get: (timestamp) => new Date(timestamp).toDateString(),
   },
-});
+},
+{
+  toJSON:{
+    virtuals:true,
+  },
+  id:false,
+}
+);
 
 
 userSchema.virtual("friendsCount").get(function (){
