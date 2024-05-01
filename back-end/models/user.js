@@ -24,12 +24,29 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  friends:[
+    {
+      type: Schema.Types.ObjectId,
+      ref:"user"
+    }
+  ],
+  post:[
+    {
+      type:Schema.Types.ObjectId,
+      ref:'post',
+    }
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
     get: (timestamp) => new Date(timestamp).toDateString(),
   },
 });
+
+
+userSchema.virtual("friendsCount").get(function (){
+  this.friends.length();
+})
 
 userSchema.pre("save", async function (next) {
   try {
