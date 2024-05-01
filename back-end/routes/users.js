@@ -4,7 +4,7 @@ const {User, Post} = require('../models')
 
 router.get('/', async (req,res)=>{
 try{
-    const users = await User.find();
+    const users = await User.find().populate('post');
 
     res.status(200).json(users)
 
@@ -15,7 +15,7 @@ try{
 });
 
 router.get('/:id', async (req,res)=>{
-    const users = await User.findById({_id:req.params.id}.populate('post'))
+    const users = await User.findById({_id:req.params.id}).populate('post');
 
     if(users){
         res.status(200).json(users)
@@ -23,8 +23,5 @@ router.get('/:id', async (req,res)=>{
         res.status(404).json({Status: 'User does not exist'})
     )
 })
-
-
-
 
 module.exports = router;

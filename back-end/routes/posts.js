@@ -1,24 +1,22 @@
 const router = require("express").Router();
-const {Post} = require('../models')
+const {Post} = require('../models');
 
 
 router.post('/', async (req,res)=>{
-    const {userPost, username} = req.body;
+    console.log(req.body)
+    const {userPost, username, userId} = req.body;
     try{
-        const post = await Post.create({post:userPost, username:username})
+        const post = await Post.create({post:userPost, username:username, userId:userId})
 
-    if (post){
-        res.status(200).json({status:'Success'})
-    }else{
-        res.status(404).json({status:'Failed', message:"Check post for errors"})
-    }
-
+        if(post){
+            res.status(200).json({status:'Success'})
+        }
+   
     }catch(err){
         res.status(500).json({status: 'Request failed', message:'Check Post endpoint!'})
     }   
 
-})
-
+});
 router.get('/', async (req,res)=>{
     try{
         const posts = await Post.find();

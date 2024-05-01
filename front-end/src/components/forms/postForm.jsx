@@ -17,12 +17,14 @@ export default function postForm(props) {
     event.preventDefault();
     axios.defaults.withCredentials = true;
     const username = props.username;
+    const userId = props.id;
     try{
        const post =  await axios({
         method: "post",
         url: 'http://localhost:3001/api/post',
         data:{
             username,
+            userId,
             userPost
         },
        })

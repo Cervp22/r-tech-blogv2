@@ -42,18 +42,9 @@ const userSchema = new Schema({
     get: (timestamp) => new Date(timestamp).toDateString(),
   },
 },
-{
-  toJSON:{
-    virtuals:true,
-  },
-  id:false,
-}
 );
 
 
-userSchema.virtual("friendsCount").get(function (){
-  this.friends.length();
-})
 
 userSchema.pre("save", async function (next) {
   try {

@@ -12,6 +12,7 @@ export default function Home() {
   const navigate = useNavigate();
   const [navbar, setNavBar] = useState();
   const [userName, setUserName] = useState('')
+  const [userId, setUserId] = useState('')
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
@@ -23,6 +24,7 @@ export default function Home() {
       }
 
       setUserName(res.data.username)
+      setUserId(res.data.id)
 
       if (res.data.isAdmin) {
         setNavBar(true);
@@ -35,7 +37,7 @@ export default function Home() {
   return (
     <>
       <nav>{navbar ? <AdminNavBar /> : <UserNavBar />}</nav>
-      <PostForm username={userName} />
+      <PostForm username={userName} id={userId} />
       <div style={{ height: "80vh" }}>
         <WelcomeHeader />
         <h1>This is your home Page!</h1>

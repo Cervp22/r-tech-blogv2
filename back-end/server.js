@@ -8,7 +8,7 @@ const logout = require("./routes/logout");
 const validateToken = require("./routes/validateToken");
 const forgotPassword = require("./routes/forgotpassword");
 const resetPassword = require("./routes/reset-Password");
-const post = require('./routes/post')
+const posts = require('./routes/posts')
 const users = require('./routes/users')
 
 const port = 3001;
@@ -38,7 +38,7 @@ app.use("/api/forgotPassword", forgotPassword);
 app.use("/api/resetPassword/:id/:token", resetPassword);
 
 //User/ post / Likes CRUD
-app.use('/api/post', post)
+app.use('/api/post', posts)
 app.use('/api/users', users)
 
 

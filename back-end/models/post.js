@@ -2,6 +2,10 @@ const {Schema, model} = require('mongoose')
 
 
 const postSchema = new Schema({
+    userId:{
+        type:String,
+        required:true,
+    },
     post:{
         type:String,
         trim:true,
@@ -21,11 +25,6 @@ const postSchema = new Schema({
 },
 
 });
-
-postSchema.virtual("likescCount").get(function () {
-    return this.likes.length();
-});
-
 const Post = model( "post", postSchema);
 
 module.exports = Post
