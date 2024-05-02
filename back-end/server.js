@@ -5,11 +5,12 @@ const db = require("./config/connection");
 const register = require("./routes/register");
 const login = require("./routes/login");
 const logout = require("./routes/logout");
+const totalUsers = require("./routes/totaluser");
 const validateToken = require("./routes/validateToken");
 const forgotPassword = require("./routes/forgotpassword");
 const resetPassword = require("./routes/reset-Password");
-const posts = require('./routes/posts')
-const users = require('./routes/users')
+const posts = require("./routes/posts");
+const users = require("./routes/users");
 
 const port = 3001;
 
@@ -38,9 +39,9 @@ app.use("/api/forgotPassword", forgotPassword);
 app.use("/api/resetPassword/:id/:token", resetPassword);
 
 //User/ post / Likes CRUD
-app.use('/api/post', posts)
-app.use('/api/users', users)
-
+app.use("/api/post", posts);
+app.use("/api/users", users);
+app.use("/api/totalusers", totalUsers);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the r-tech-blogv2 api...");
