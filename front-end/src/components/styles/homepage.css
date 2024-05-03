@@ -1,0 +1,23 @@
+*{
+    padding:0px;
+    margin:0px;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+  }
+
+
+.welcomeheaderdiv{
+    margin-top:1%;
+    width:fit-content;
+    margin-left: 10%;
+}
+
+.postformdiv{
+    text-align: center;
+    width:fit-content;
+    margin-left: 660px;
+    
+}

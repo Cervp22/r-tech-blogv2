@@ -1,12 +1,11 @@
 function UserList(props) {
   const datas = props.users;
-  console.log(datas);
   return (
     <ul>
       {datas.map((data) => {
         return (
           <li key={data._id}>
-            <h1>{data.username}</h1>
+            <h1><a href={`/profile/${data._id}`}>{data.username}</a></h1>
           </li>
         );
       })}

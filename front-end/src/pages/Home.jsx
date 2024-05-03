@@ -6,9 +6,10 @@ import PostForm from "../components/forms/postForm";
 import UserNavBar from "../components/navbars/Usernavbar";
 import AdminNavBar from "../components/navbars/Adminnavbar";
 
+import "../components/styles/homepage.css"
 import axios from "axios";
 
-export default function Home() {
+export default function Home(props) {
   const navigate = useNavigate();
   const [navbar, setNavBar] = useState();
   const [userName, setUserName] = useState('')
@@ -37,10 +38,12 @@ export default function Home() {
   return (
     <>
       <nav>{navbar ? <AdminNavBar /> : <UserNavBar />}</nav>
+  
+      <div >
+        <WelcomeHeader username={userName}/>
+      </div>
+      <div className="postformdiv">
       <PostForm username={userName} id={userId} />
-      <div style={{ height: "80vh" }}>
-        <WelcomeHeader />
-        <h1>This is your home Page!</h1>
       </div>
     </>
   );

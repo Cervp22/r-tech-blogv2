@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import UserList from "../components/list/Userlist";
 import UserNavBar from "../components/navbars/Usernavbar";
 import AdminNavBar from "../components/navbars/Adminnavbar";
+import Table from "../components/table/table"
+
 
 import axios from "axios";
 
@@ -10,10 +12,13 @@ export default function AdminPage(props) {
   const navigate = useNavigate();
   const [navbar, setNavBar] = useState();
   const [users, setUsers] = useState([]);
+  const [totalUsers, setTotalUsers] = useState('')
+
+  
+  axios.defaults.withCredentials = true;
 
   //validating token
   useEffect(() => {
-    axios.defaults.withCredentials = true;
     axios.get("http://localhost:3001/api/validateToken").then((res) => {
       if (res.data.isAdmin) {
       } else {
@@ -34,12 +39,19 @@ export default function AdminPage(props) {
     const { data } = await response;
     setUsers(data);
   };
+
+
+  useEffect(()=>{
+    axios.get('http://localhost:3001/api/totalusers').then((res)=>{
+          setTotalUsers(res.data)
+    })})
+
+
+
   return (
     <>
       <nav>{navbar ? <AdminNavBar /> : <UserNavBar />}</nav>
-      <div>
-        <h1>This is the Admin Page!!</h1>
-      </div>
+      <Table totalUsers={totalUsers}/>
       <div>
         <button onClick={getUserData}>Get Users</button>
         <div>

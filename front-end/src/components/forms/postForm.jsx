@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
+import "../styles/postform.css"
 
 
 export default function postForm(props) {
@@ -36,15 +37,15 @@ export default function postForm(props) {
 
   return (
     <>
-      <div style={{ height: "80vh" }}>
-        <h1>Write Something..</h1>
+      <div className="postdiv" >
+        <h1 className="posttitle">Post Here..</h1>
         <br />
         <form onSubmit={handleFormSubmit}>
-          <input
+          <textarea
             type="text"
             onChange={handleInput}
-            placeholder="Write Something.."
-            className="userPost"
+            placeholder=" Write Something.."
+            className="userPostformta"
             name="userPost"
           />
           <button type="submit">Submit</button>
