@@ -27,7 +27,7 @@ const userSchema = new Schema({
   post: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Post",
+      ref: "post",
     },
   ],
   createdAt: {
@@ -48,6 +48,6 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-const User = model("User", userSchema);
+const User = model("user", userSchema);
 
 module.exports = User;

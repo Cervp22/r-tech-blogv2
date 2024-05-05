@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../models");
+const { User, Post } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const users = await User.findById({ _id: req.params.id }).populate("post");
+  const users = await User.findById({ _id: req.params.id })
   console.log(users);
 
   if (users) {

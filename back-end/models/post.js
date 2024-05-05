@@ -4,7 +4,7 @@ const postSchema = new Schema({
   userId: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "user",
       require: true,
     },
   ],
@@ -27,6 +27,6 @@ const postSchema = new Schema({
     get: (timestamp) => new Date(timestamp).toDateString(),
   },
 });
-const Post = model("Post", postSchema);
+const Post = model("post", postSchema);
 
 module.exports = Post;

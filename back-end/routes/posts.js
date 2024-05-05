@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post } = require("../models");
+const { Post, User } = require("../models");
 
 router.post("/", async (req, res) => {
   console.log(req.body);
@@ -11,6 +11,12 @@ router.post("/", async (req, res) => {
       userId: userId,
     });
 
+    const {_id} = post;
+
+    console.log(_id)
+
+   const updateUser = await User.findOneAndUpdate({_id:userId},{$addToSet:{post:_id}})
+   
     if (post) {
       res.status(200).json({ status: "Success" });
     }
