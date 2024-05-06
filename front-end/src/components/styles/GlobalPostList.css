@@ -1,0 +1,49 @@
+.globalpostlistdiv{
+   /* background-color: green;*/
+    width: 600px;
+    height:195px;
+    margin-left:645px;
+    border-style:solid;
+    border-color:black;
+    border-width:1px;
+    border-radius:5px;
+    margin-top: 12px;
+}
+
+.globalpostlistchilddiv1{
+    background-color: rgb(182, 182, 182);
+    height:26%;
+    border-bottom: solid 1px;
+
+}
+.globalpostlistchilddiv1header{
+    padding-top:10px;
+}
+.globalpostlistchilddiv1id{
+    color:black;
+    padding-left:475px;
+    font-size:10px;
+}
+
+.globalpostlistchilddiv2{
+    /*background-color:cyan;*/
+    height:49%;
+    word-wrap:break-word;
+
+}
+.div2userpost{
+    /*color:red;*/
+    padding: 10px;
+}
+.globalpostlistchilddiv3{
+    background-color: yellow;
+    height:25%;
+}
+.likebtn{
+    width:50%;
+    height:50px;
+}
+.dislikebtn{
+    width:50%;
+    height:50px;
+}

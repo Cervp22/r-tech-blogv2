@@ -5,6 +5,7 @@ import WelcomeHeader from "../components/headers/Welcomeheader";
 import PostForm from "../components/forms/postForm";
 import UserNavBar from "../components/navbars/Usernavbar";
 import AdminNavBar from "../components/navbars/Adminnavbar";
+import GloblaPostList from "../components/list/GlobalPostList"
 
 import "../components/styles/homepage.css"
 import axios from "axios";
@@ -14,11 +15,14 @@ export default function Home(props) {
   const [navbar, setNavBar] = useState();
   const [userName, setUserName] = useState('')
   const [userId, setUserId] = useState('')
+  const [UsersPost, setUserPost] = useState([])
+
+  axios.defaults.withCredentials = true;
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
     axios.get("http://localhost:3001/api/validateToken").then((res) => {
-      console.log(res.data);
+      console.log(res);
       if (res.data.status) {
       } else {
         navigate("/");
@@ -35,6 +39,9 @@ export default function Home(props) {
     });
   }, []);
 
+  useEffect(()=>{
+    axios.get("http://localhost:3001/api/post").then((res)=>{setUserPost(res.data)})},[])
+
   return (
     <>
       <nav>{navbar ? <AdminNavBar /> : <UserNavBar />}</nav>
@@ -44,6 +51,9 @@ export default function Home(props) {
       </div>
       <div className="postformdiv">
       <PostForm username={userName} id={userId} />
+      </div>
+      <div>
+        <GloblaPostList usersPost={UsersPost} />
       </div>
     </>
   );
