@@ -8,10 +8,12 @@ export default function UserProfile() {
   const navigate = useNavigate();
 
   const [navbar, setNavBar] = useState();
+  const [userId, setUserId] = useState('')
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
     axios.get("http://localhost:3001/api/validateToken").then((res) => {
+      setUserId(res.data.id)
       if (res.data.isAdmin) {
       } else {
         navigate("/");
@@ -26,7 +28,7 @@ export default function UserProfile() {
   });
   return (
     <>
-      <nav>{navbar ? <AdminNavBar /> : <UserNavBar />}</nav>
+      <nav>{navbar ? <AdminNavBar userId={userId}/> : <UserNavBar userId={userId} />}</nav>
       <div>
         <h1>This is the User Profile Page</h1>
       </div>
