@@ -44,7 +44,7 @@ export default function Home(props) {
 
   return (
     <>
-      <nav>{navbar ? <AdminNavBar /> : <UserNavBar />}</nav>
+      <nav>{navbar ? <AdminNavBar userId={userId}/> : <UserNavBar userId={userId} />}</nav>
   
       <div >
         <WelcomeHeader username={userName}/>

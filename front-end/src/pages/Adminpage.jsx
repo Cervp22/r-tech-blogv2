@@ -12,6 +12,7 @@ export default function AdminPage(props) {
   const navigate = useNavigate();
   const [navbar, setNavBar] = useState();
   const [users, setUsers] = useState([]);
+  const [userId, setUserId] = useState('')
   const [totalUsers, setTotalUsers] = useState('')
 
   
@@ -20,6 +21,7 @@ export default function AdminPage(props) {
   //validating token
   useEffect(() => {
     axios.get("http://localhost:3001/api/validateToken").then((res) => {
+      setUserId(res.data.id)
       if (res.data.isAdmin) {
       } else {
         navigate("/");
@@ -50,7 +52,7 @@ export default function AdminPage(props) {
 
   return (
     <>
-      <nav>{navbar ? <AdminNavBar /> : <UserNavBar />}</nav>
+      <nav>{navbar ? <AdminNavBar userId={userId} /> : <UserNavBar userId={userId}/>}</nav>
       <Table totalUsers={totalUsers}/>
       <div>
         <button onClick={getUserData}>Get Users</button>

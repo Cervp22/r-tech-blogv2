@@ -8,11 +8,13 @@ import axios from "axios";
 export default function MessagesPage() {
   const navigate = useNavigate();
   const [navbar, setNavBar] = useState();
+  const [userId, setUserId] = useState('')
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
     axios.get("http://localhost:3001/api/validateToken").then((res) => {
       console.log(res.data);
+      setUserId(res.data.id)
       if (res.data.status) {
       } else {
         navigate("/");
@@ -28,7 +30,7 @@ export default function MessagesPage() {
 
   return (
     <>
-      <nav>{navbar ? <AdminNavBar /> : <UserNavBar />}</nav>
+      <nav>{navbar ? <AdminNavBar userId={userId}/> : <UserNavBar userId={userId}/>}</nav>
       <h1>This is the messages dashboard page</h1>
     </>
   );

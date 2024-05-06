@@ -5,7 +5,7 @@ function UserList(props) {
       {datas.map((data) => {
         return (
           <li key={data._id}>
-            <h1><a href={`/profile/${data._id}`}>{data.username}</a></h1>
+            <h1><a href="#">{data.username}</a></h1>
           </li>
         );
       })}

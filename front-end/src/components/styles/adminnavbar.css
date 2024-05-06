@@ -32,5 +32,12 @@ body {
 }
 
 .adminnavlist li a:hover {
-  background-color: grey;
+  color:rgb(240, 235, 235)
+
+}
+
+.profilelink:hover{
+  cursor: pointer;
+  color:rgb(240, 235, 235)
+
 }
