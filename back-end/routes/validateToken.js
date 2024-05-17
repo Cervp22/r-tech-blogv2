@@ -19,11 +19,17 @@ const validateUser = async (req, res, next) => {
 };
 
 router.get("/", validateUser, (req, res) => {
-  console.log(req.user)
+  console.log(req.user);
   const { isAdmin, _id, username } = req.user;
   console.log("User token validated");
 
-  return res.json({ status: true, message: "authorized", isAdmin: isAdmin, id: _id, username: username});
+  return res.json({
+    status: true,
+    message: "authorized",
+    isAdmin: isAdmin,
+    id: _id,
+    username: username,
+  });
 });
 
 module.exports = router;

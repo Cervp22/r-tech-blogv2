@@ -1,0 +1,14 @@
+.parentdiv {
+  width: 100%;
+  display: inline-flex;
+}
+
+.profilepicdiv {
+  width: 45%;
+}
+.profileinfo {
+  width: 55%;
+}
+.userpostdiv {
+  background-color: aqua;
+}

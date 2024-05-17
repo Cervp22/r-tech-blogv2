@@ -11,12 +11,15 @@ router.post("/", async (req, res) => {
       userId: userId,
     });
 
-    const {_id} = post;
+    const { _id } = post;
 
-    console.log(_id)
+    console.log(_id);
 
-   const updateUser = await User.findOneAndUpdate({_id:userId},{$addToSet:{post:_id}})
-   
+    const updateUser = await User.findOneAndUpdate(
+      { _id: userId },
+      { $addToSet: { post: _id } }
+    );
+
     if (post) {
       res.status(200).json({ status: "Success" });
     }
@@ -43,9 +46,20 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById({ _id: req.params.id });
+    console.log(post);
     res.status(200).json(post);
   } catch (err) {
     res.status(500).json({ Status: "Failed", message: "Check endpoint!" });
+  }
+});
+
+router.get("/userpost/:userid", async (req, res) => {
+  console.log(req.params.userid);
+  try {
+    const userpost = await Post.findById({ userid: req.params.userid });
+    res.status(200).json(userpost);
+  } catch (err) {
+    res.status(500).json({ status: "Failed", message: "Check endpoint" });
   }
 });
 

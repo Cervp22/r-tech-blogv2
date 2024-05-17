@@ -5,17 +5,17 @@ import WelcomeHeader from "../components/headers/Welcomeheader";
 import PostForm from "../components/forms/postForm";
 import UserNavBar from "../components/navbars/Usernavbar";
 import AdminNavBar from "../components/navbars/Adminnavbar";
-import GloblaPostList from "../components/list/GlobalPostList"
+import GloblaPostList from "../components/list/GlobalPostList";
 
-import "../components/styles/homepage.css"
+import "../components/styles/homepage.css";
 import axios from "axios";
 
 export default function Home(props) {
   const navigate = useNavigate();
   const [navbar, setNavBar] = useState();
-  const [userName, setUserName] = useState('')
-  const [userId, setUserId] = useState('')
-  const [UsersPost, setUserPost] = useState([])
+  const [userName, setUserName] = useState("");
+  const [userId, setUserId] = useState("");
+  const [UsersPost, setUserPost] = useState([]);
 
   axios.defaults.withCredentials = true;
 
@@ -28,8 +28,8 @@ export default function Home(props) {
         navigate("/");
       }
 
-      setUserName(res.data.username)
-      setUserId(res.data.id)
+      setUserName(res.data.username);
+      setUserId(res.data.id);
 
       if (res.data.isAdmin) {
         setNavBar(true);
@@ -39,18 +39,27 @@ export default function Home(props) {
     });
   }, []);
 
-  useEffect(()=>{
-    axios.get("http://localhost:3001/api/post").then((res)=>{setUserPost(res.data)})},[])
+  useEffect(() => {
+    axios.get("http://localhost:3001/api/posts").then((res) => {
+      setUserPost(res.data);
+    });
+  }, []);
 
   return (
     <>
-      <nav>{navbar ? <AdminNavBar userId={userId}/> : <UserNavBar userId={userId} />}</nav>
-  
-      <div >
-        <WelcomeHeader username={userName}/>
+      <nav>
+        {navbar ? (
+          <AdminNavBar userId={userId} />
+        ) : (
+          <UserNavBar userId={userId} />
+        )}
+      </nav>
+
+      <div>
+        <WelcomeHeader username={userName} />
       </div>
       <div className="postformdiv">
-      <PostForm username={userName} id={userId} />
+        <PostForm username={userName} id={userId} />
       </div>
       <div>
         <GloblaPostList usersPost={UsersPost} />

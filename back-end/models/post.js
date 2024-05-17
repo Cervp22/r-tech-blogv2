@@ -1,13 +1,10 @@
 const { Schema, model } = require("mongoose");
 
 const postSchema = new Schema({
-  userId: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "user",
-      require: true,
-    },
-  ],
+  userId: {
+    type: String,
+    require: true,
+  },
   post: {
     type: String,
     require: true,
@@ -27,6 +24,6 @@ const postSchema = new Schema({
     get: (timestamp) => new Date(timestamp).toDateString(),
   },
 });
-const Post = model("post", postSchema);
+const Post = model("posts", postSchema);
 
 module.exports = Post;

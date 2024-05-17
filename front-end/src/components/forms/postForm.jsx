@@ -22,7 +22,7 @@ export default function postForm(props) {
     try{
        const post =  await axios({
         method: "post",
-        url: 'http://localhost:3001/api/post',
+        url: 'http://localhost:3001/api/posts',
         data:{
             username,
             userId,

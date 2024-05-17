@@ -39,7 +39,7 @@ app.use("/api/forgotPassword", forgotPassword);
 app.use("/api/resetPassword/:id/:token", resetPassword);
 
 //User/ post / Likes CRUD
-app.use("/api/post", posts);
+app.use("/api/posts", posts);
 app.use("/api/users", users);
 app.use("/api/totalusers", totalUsers);
 
