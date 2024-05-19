@@ -25,7 +25,7 @@ export default function UserProfile() {
     axios.get("http://localhost:3001/api/validateToken").then((res) => {
       setUserData(res.data);
       setUserId(res.data.id);
-      if (res.data.isAdmin) {
+      if (res.data.status) {
       } else {
         navigate("/");
       }
@@ -33,18 +33,26 @@ export default function UserProfile() {
         setNavBar(true);
       } else {
         setNavBar(false);
-        navigate("/login");
       }
     });
   }, []);
 
   useEffect(() => {
-    axios.defaults.withCredentials = true;
-    axios.get(`http://localhost:3001/api/posts`).then((res) => {
-      setUserPost(res.data);
-    });
-  }, []);
-
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/api/posts/userpost/${userId}`, {
+          withCredentials: true,
+        }).then((res)=>{
+          setUserPost(res.data)
+        })
+      } catch (err) {
+        console.error('Error fetching posts:');
+      }
+    };
+  
+    fetchData();
+  }, [userId]);
+console.log()
   return (
     <>
       <nav>
@@ -63,7 +71,7 @@ export default function UserProfile() {
         </div>
       </div>
       <div className="userpostdiv">
-        <UserPostList userPost={userPost} userId={userId} />
+        {<UserPostList userPost={userPost}  />}
       </div>
     </>
   );

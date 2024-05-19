@@ -1,12 +1,9 @@
 function UserPostList(props) {
   const datas = props.userPost;
-  const userid = props.userId;
-  console.log(userid);
-  console.log(datas);
 
   return (
     <ul>
-      {datas.map((data) => {
+      {datas.toReversed().map((data) => {
         return (
           <li key={data._id} className={"postlistparent"}>
             <div className={"globalpostlistdiv"}>

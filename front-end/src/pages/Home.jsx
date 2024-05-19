@@ -22,7 +22,6 @@ export default function Home(props) {
   useEffect(() => {
     axios.defaults.withCredentials = true;
     axios.get("http://localhost:3001/api/validateToken").then((res) => {
-      console.log(res);
       if (res.data.status) {
       } else {
         navigate("/");
