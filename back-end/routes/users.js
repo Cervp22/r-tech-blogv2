@@ -15,7 +15,6 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const users = await User.findById({ _id: req.params.id })
-  console.log(users);
 
   if (users) {
     res.status(200).json(users);

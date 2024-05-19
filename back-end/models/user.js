@@ -24,6 +24,10 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  friends:[{
+    type:Schema.Types.ObjectId,
+    ref:'users'
+  }],
   post: [
     {
       type: Schema.Types.ObjectId,

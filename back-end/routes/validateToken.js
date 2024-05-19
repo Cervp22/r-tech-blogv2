@@ -19,7 +19,6 @@ const validateUser = async (req, res, next) => {
 };
 
 router.get("/", validateUser, (req, res) => {
-  console.log(req.user);
   const { isAdmin, _id, username } = req.user;
   console.log("User token validated");
 
