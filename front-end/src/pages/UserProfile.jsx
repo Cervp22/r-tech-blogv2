@@ -68,6 +68,7 @@ export default function UserProfile() {
       console.log("error ", error);
     };
   }
+
   return (
     <>
       <nav>
@@ -82,6 +83,7 @@ export default function UserProfile() {
           <ProfilePicForm
             convertToBase64={convertToBase64}
             profileImage={userProfilePic}
+            userid={userId}
           />
         </div>
         <div className="profileinfo">

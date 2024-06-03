@@ -57,13 +57,25 @@ router.get("/userpost/:userid", async (req, res) => {
   try {
     const userpost = await Post.find({ userId: req.params.userid });
 
-    if(userpost){
-      res.status(200).json(userpost)
-    }else{
-      res.status(404).json({message:'Failed, try again!'})
+    if (userpost) {
+      res.status(200).json(userpost);
+    } else {
+      res.status(404).json({ message: "Failed, try again!" });
     }
   } catch (err) {
-    res.status(500).json({ status: "Failed", message: "Check endpoint", err});
+    res.status(500).json({ status: "Failed", message: "Check endpoint", err });
+  }
+});
+
+router.post("/:userid/userprofilepic", async (req, res) => {
+  try {
+    console.log(req.body);
+    const userData = await User.findById({ _id: req.body.userid });
+
+    
+    res.status(200).json({ message: "endpoint works!" });
+  } catch (err) {
+    res.status(500).json({ messag: "Check user profile endpoint!", error });
   }
 });
 

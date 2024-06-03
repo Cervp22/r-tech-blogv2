@@ -20,14 +20,19 @@ const userSchema = new Schema({
   password: {
     type: String,
   },
+  profilepic: {
+    type: String,
+  },
   isAdmin: {
     type: Boolean,
     default: false,
   },
-  friends:[{
-    type:Schema.Types.ObjectId,
-    ref:'users'
-  }],
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
+  ],
   post: [
     {
       type: Schema.Types.ObjectId,

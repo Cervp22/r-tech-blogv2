@@ -1,16 +1,38 @@
+import axios from "axios";
 import "../styles/userprofiledisplay.css";
 
 export default function ProfilePicForm(props) {
+  const { profileImage, userid, convertToBase64 } = props;
+
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+    axios.defaults.withCredentials = true;
+
+    //any image that is 2400 x 1000 will not work callback of entity too large !
+    try {
+      const profilePicPost = await axios({
+        method: "post",
+        url: `http://localhost:3001/api/posts/${userid}/userprofilepic/`,
+        data: {
+          userid,
+          profileImage,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <>
-      <form>
-        <img src={props.profileImage} className="profileimg" />
+      <form onSubmit={handleFormSubmit}>
+        <img src={profileImage} className="profileimg" />
         <div>
           <input
             className="fileinput"
             type="file"
             accept="image/*"
-            onChange={props.convertToBase64}
+            onChange={convertToBase64}
           />
           <input className="submitinput" type="submit" />
         </div>
