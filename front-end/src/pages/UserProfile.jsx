@@ -18,6 +18,7 @@ export default function UserProfile() {
   const [navbar, setNavBar] = useState();
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState("");
+  const [userProfilePic, setUserProfilePic] = useState("");
   const [userPost, setUserPost] = useState([]);
 
   useEffect(() => {
@@ -40,19 +41,33 @@ export default function UserProfile() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/api/posts/userpost/${userId}`, {
-          withCredentials: true,
-        }).then((res)=>{
-          setUserPost(res.data)
-        })
+        const response = await axios
+          .get(`http://localhost:3001/api/posts/userpost/${userId}`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            setUserPost(res.data);
+          });
       } catch (err) {
-        console.error('Error fetching posts:');
+        console.error("Error fetching posts:");
       }
     };
-  
+
     fetchData();
   }, [userId]);
-console.log()
+
+  function convertToBase64(e) {
+    console.log(e);
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      console.log(reader.result);
+      setUserProfilePic(reader.result);
+    };
+    reader.onerror = (error) => {
+      console.log("error ", error);
+    };
+  }
   return (
     <>
       <nav>
@@ -64,15 +79,16 @@ console.log()
       </nav>
       <div className="parentdiv">
         <div className="profilepicdiv">
-          <ProfilePicForm photo={photo} />
+          <ProfilePicForm
+            convertToBase64={convertToBase64}
+            profileImage={userProfilePic}
+          />
         </div>
         <div className="profileinfo">
           <ProfileInfo userData={userData} />
         </div>
       </div>
-      <div className="userpostdiv">
-        {<UserPostList userPost={userPost}  />}
-      </div>
+      <div className="userpostdiv">{<UserPostList userPost={userPost} />}</div>
     </>
   );
 }

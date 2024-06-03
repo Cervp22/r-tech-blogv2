@@ -1,13 +1,17 @@
 import "../styles/userprofiledisplay.css";
 
 export default function ProfilePicForm(props) {
-  const img = props.photo;
   return (
     <>
       <form>
-        <img src={img} className="profileimg" />
+        <img src={props.profileImage} className="profileimg" />
         <div>
-          <input className="fileinput" type="file" />
+          <input
+            className="fileinput"
+            type="file"
+            accept="image/*"
+            onChange={props.convertToBase64}
+          />
           <input className="submitinput" type="submit" />
         </div>
       </form>
