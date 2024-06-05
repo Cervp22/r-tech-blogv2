@@ -9,6 +9,7 @@ const totalUsers = require("./routes/totaluser");
 const validateToken = require("./routes/validateToken");
 const forgotPassword = require("./routes/forgotpassword");
 const resetPassword = require("./routes/reset-Password");
+const profilePic = require("./routes/profilepic");
 const posts = require("./routes/posts");
 const users = require("./routes/users");
 
@@ -37,6 +38,10 @@ app.use("/api/logout", logout);
 app.use("/api/validateToken", validateToken);
 app.use("/api/forgotPassword", forgotPassword);
 app.use("/api/resetPassword/:id/:token", resetPassword);
+
+//Profile pics
+
+app.use("/api/profilepics", profilePic);
 
 //User/ post / Likes CRUD
 app.use("/api/posts", posts);

@@ -7,7 +7,6 @@ import UserPostList from "../components/list/UserPostList";
 
 import AdminNavBar from "../components/navbars/Adminnavbar";
 import UserNavBar from "../components/navbars/Usernavbar";
-import photo from "../images/lospatojosv2_like_icon.jpg";
 import axios from "axios";
 
 import "../components/styles/userprofile.css";
@@ -20,6 +19,25 @@ export default function UserProfile() {
   const [userData, setUserData] = useState("");
   const [userProfilePic, setUserProfilePic] = useState("");
   const [userPost, setUserPost] = useState([]);
+
+  useEffect(() => {
+    const fetchProfilePicData = async () => {
+      try {
+        const response = await axios
+          .get(`http://localhost:3001/api/profilepics/user/${userId}`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data.profilePic[0].profileImage);
+            setUserProfilePic(res.data.profilePic[0].profileImage);
+          });
+      } catch (err) {
+        console.error("Error fetching posts:");
+      }
+    };
+
+    fetchProfilePicData();
+  }, [userId]);
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
@@ -56,6 +74,7 @@ export default function UserProfile() {
     fetchData();
   }, [userId]);
 
+  //converts images to based64 / text for mongodb database
   function convertToBase64(e) {
     console.log(e);
     var reader = new FileReader();

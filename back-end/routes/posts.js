@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Post, User } = require("../models");
 
+//add post to database and update to specific user profile
 router.post("/", async (req, res) => {
   console.log(req.body);
   const { userPost, username, userId } = req.body;
@@ -29,6 +30,8 @@ router.post("/", async (req, res) => {
       .json({ status: "Request failed", message: "Check Post endpoint!" });
   }
 });
+
+//get all post in database
 router.get("/", async (req, res) => {
   try {
     const posts = await Post.find();
@@ -43,7 +46,9 @@ router.get("/", async (req, res) => {
   }
 });
 
+// get specific post with id of post
 router.get("/:id", async (req, res) => {
+  console.log(req.params);
   try {
     const post = await Post.findById({ _id: req.params.id });
     console.log(post);
@@ -52,7 +57,7 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ Status: "Failed", message: "Check endpoint!" });
   }
 });
-
+// get all post from specifc user id
 router.get("/userpost/:userid", async (req, res) => {
   try {
     const userpost = await Post.find({ userId: req.params.userid });
@@ -64,18 +69,6 @@ router.get("/userpost/:userid", async (req, res) => {
     }
   } catch (err) {
     res.status(500).json({ status: "Failed", message: "Check endpoint", err });
-  }
-});
-
-router.post("/:userid/userprofilepic", async (req, res) => {
-  try {
-    console.log(req.body);
-    const userData = await User.findById({ _id: req.body.userid });
-
-    
-    res.status(200).json({ message: "endpoint works!" });
-  } catch (err) {
-    res.status(500).json({ messag: "Check user profile endpoint!", error });
   }
 });
 

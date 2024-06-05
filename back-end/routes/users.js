@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Post } = require("../models");
+const { User, ProfilePic } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
@@ -14,11 +14,12 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const users = await User.findById({ _id: req.params.id })
+  const users = await User.findById({ _id: req.params.id });
 
   if (users) {
     res.status(200).json(users);
   } else res.status(404).json({ Status: "User does not exist" });
 });
+
 
 module.exports = router;

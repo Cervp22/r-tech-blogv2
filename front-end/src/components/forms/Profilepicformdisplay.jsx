@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import axios from "axios";
 import "../styles/userprofiledisplay.css";
 
@@ -12,7 +13,7 @@ export default function ProfilePicForm(props) {
     try {
       const profilePicPost = await axios({
         method: "post",
-        url: `http://localhost:3001/api/posts/${userid}/userprofilepic/`,
+        url: `http://localhost:3001/api/profilepics/${userid}`,
         data: {
           userid,
           profileImage,
