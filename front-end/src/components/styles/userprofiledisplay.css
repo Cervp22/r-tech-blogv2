@@ -1,5 +1,7 @@
 .profileimg {
   height: 220px;
+  border: 5px solid black;
+  border-radius: 20%;
   margin-left: 200px;
   margin-top: 40px;
 }

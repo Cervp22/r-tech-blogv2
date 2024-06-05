@@ -12,13 +12,16 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    trim:true,
   },
   fullname: {
     type: String,
     required: true,
+    trim:true,
   },
   password: {
     type: String,
+    trim:true,
   },
   profilepic: {
     type: String,

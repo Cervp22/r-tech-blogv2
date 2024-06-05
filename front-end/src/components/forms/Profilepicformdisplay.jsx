@@ -27,7 +27,10 @@ export default function ProfilePicForm(props) {
   return (
     <>
       <form onSubmit={handleFormSubmit}>
-        <img src={profileImage} className="profileimg" />
+        <img
+          src={profileImage}
+          className="profileimg"
+        />
         <div>
           <input
             className="fileinput"

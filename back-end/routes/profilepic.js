@@ -27,6 +27,16 @@ router.get("/:id", async (req, res) => {
 router.post("/:userid", async (req, res) => {
   console.log(req.body.profileImage);
   try {
+    const currentProfilePhoto = await ProfilePics.findOneAndDelete({
+      userId: req.params.userid,
+    });
+
+    if (currentProfilePhoto) {
+      console.log("Deleted old profile photo");
+    } else {
+      console.log("NO profile photo found, inserting new one");
+    }
+
     const userprofilepic = await ProfilePics.create({
       profileImage: req.body.profileImage,
       userId: req.params.userid,
