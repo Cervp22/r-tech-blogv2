@@ -1,20 +1,10 @@
 import { useState } from "react";
+import ChatRoom from "./chatroomcomp";
 
 export default function FriendRequestList(props) {
-  console.log(props.friendrequestlist);
-  const { friendrequestlist } = props;
-
-  const [display, setDisplay] = useState(true);
   return (
     <div>
-      <button
-        onClick={() => {
-          setDisplay(!display);
-        }}
-      >
-        Friend Request
-      </button>
-      {display ? friendrequestlist : "This is for the chat room"}
+      <div>friend request list</div>
     </div>
   );
 }

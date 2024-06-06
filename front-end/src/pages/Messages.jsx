@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
-import FriendRequestList from "../components/list/friendrequestlist";
 import ChatRoom from "../components/buttons/chatroomcomp";
 import UserNavBar from "../components/navbars/Usernavbar";
 import AdminNavBar from "../components/navbars/Adminnavbar";
 import FriendRequestListbtn from "../components/buttons/friendrequestcomp";
 import axios from "axios";
+
+import "../components/styles/messagespage.css";
 
 const socket = io("http://localhost:3001");
 
@@ -15,6 +16,7 @@ export default function MessagesPage() {
   const [navbar, setNavBar] = useState();
   const [userId, setUserId] = useState("");
   const [userName, setUserName] = useState("");
+  const [display, setDisplay] = useState(true);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -59,8 +61,17 @@ export default function MessagesPage() {
           <UserNavBar userId={userId} />
         )}
       </nav>
-      <FriendRequestListbtn friendrequestlist={<FriendRequestList />} />
-      <ChatRoom />
+      <div className="mainbtndiv">
+        <button
+          className="togglebtnfriendrequest-chatroom"
+          onClick={() => setDisplay(!display)}
+        >
+          {display ? "ChatRoom" : "Friend Request"}
+        </button>
+        <div className="componenttogglediv">{display ? <FriendRequestListbtn /> : <ChatRoom />}</div>
+      </div>
+
+      {/*<FriendRequestListbtn friendrequestlist={<FriendRequestList />} />*/}
     </>
   );
 }

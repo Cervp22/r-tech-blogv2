@@ -5,14 +5,7 @@ export default function ChatRoom(props) {
 
   return (
     <div>
-      <button
-        onClick={() => {
-          setDisplay(false);
-        }}
-      >
-        Chat Rooms
-      </button>
-      <div></div>
+      <div>This is the chat rooms</div>
     </div>
   );
 }
