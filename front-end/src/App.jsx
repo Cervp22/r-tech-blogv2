@@ -1,6 +1,7 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import { io } from "socket.io-client";
 import Register from "./pages/Register";
 import Nopage from "./pages/Error404";
 import ForgotPassword from "./pages/ForgotPasswordPage";
@@ -11,6 +12,8 @@ import MessagesPage from "./pages/Messages";
 import AdminPage from "./pages/Adminpage";
 
 function App() {
+
+
   return (
     <>
       <BrowserRouter>

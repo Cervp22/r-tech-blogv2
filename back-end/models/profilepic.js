@@ -7,7 +7,7 @@ const profilepicSchema = new Schema({
   userId: {
     type: String,
   },
-  createdAt: {
+  uploadedAt: {
     type: Date,
     default: Date.now,
     get: (timestamp) => new Date(timestamp).toDateString(),

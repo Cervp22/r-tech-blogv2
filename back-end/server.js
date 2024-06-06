@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require("cors");
+const http = require("http");
+const { Server } = require("socket.io");
 const cookieParser = require("cookie-parser");
 const db = require("./config/connection");
 const register = require("./routes/register");
@@ -32,6 +34,31 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+//socket io server
+const server = http.createServer(app);
+
+//socket io new server line
+const io = new Server(server, {
+  cors: {
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log(`User connected: ${socket.id}`);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    //data equals to room emmited from the front end
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`User Dis-connected: ${socket.id}`);
+  });
+});
+
 app.use("/api/register", register);
 app.use("/api/login", login);
 app.use("/api/logout", logout);
@@ -40,7 +67,6 @@ app.use("/api/forgotPassword", forgotPassword);
 app.use("/api/resetPassword/:id/:token", resetPassword);
 
 //Profile pics
-
 app.use("/api/profilepics", profilePic);
 
 //User/ post / Likes CRUD
@@ -53,7 +79,7 @@ app.get("/", (req, res) => {
 });
 
 db.once("open", () => {
-  app.listen(port, () => {
+  server.listen(port, () => {
     console.log(`server running on port ${port}`);
   });
 });
