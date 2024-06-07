@@ -53,15 +53,22 @@ export default function Home(props) {
           <UserNavBar userId={userId} />
         )}
       </nav>
-
       <div>
         <WelcomeHeader username={userName} />
       </div>
-      <div className="postformdiv">
-        <PostForm username={userName} id={userId} />
-      </div>
-      <div>
-        <GloblaPostList usersPost={UsersPost} />
+      <div id="container">
+        <div id="leftThing"></div>
+
+        <div id="content">
+          <div className="postformdiv">
+            <PostForm username={userName} id={userId} />
+          </div>
+          <div>
+            <GloblaPostList usersPost={UsersPost} />
+          </div>
+        </div>
+
+        <div id="rightThing"></div>
       </div>
     </>
   );

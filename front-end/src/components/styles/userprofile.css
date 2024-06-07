@@ -9,3 +9,21 @@
 .profileinfo {
   width: 55%;
 }
+#profilecontainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+#profileleftThing {
+  width: 25%;
+  /*background-color: blue;*/
+}
+#profilecontent {
+  width: 50%;
+  justify-content: center;
+  /*background-color: green;*/
+}
+#profilerightThing {
+  width: 25%;
+  /*background-color: yellow;*/
+}

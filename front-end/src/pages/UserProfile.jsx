@@ -28,7 +28,6 @@ export default function UserProfile() {
             withCredentials: true,
           })
           .then((res) => {
-            console.log(res.data.profilePic[0].profileImage);
             setUserProfilePic(res.data.profilePic[0].profileImage);
           });
       } catch (err) {
@@ -80,7 +79,6 @@ export default function UserProfile() {
     var reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
-      console.log(reader.result);
       setUserProfilePic(reader.result);
     };
     reader.onerror = (error) => {
@@ -109,7 +107,17 @@ export default function UserProfile() {
           <ProfileInfo userData={userData} />
         </div>
       </div>
-      <div className="userpostdiv">{<UserPostList userPost={userPost} />}</div>
+      <div id="profilecontainer">
+        <div id="profileleftThing"></div>
+
+        <div id="profilecontent">
+          <div className="userpostdiv">
+            <UserPostList userPost={userPost} />
+          </div>
+        </div>
+
+        <div id="profilerightThing"></div>
+      </div>
     </>
   );
 }
